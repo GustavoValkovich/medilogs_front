@@ -1,9 +1,10 @@
 import { Component } from '@angular/core';
 import { FormsModule } from '@angular/forms';
+import {NgIf} from "@angular/common";
 
 @Component({
   selector: 'app-user',
-  imports: [FormsModule],
+  imports: [FormsModule, NgIf],
   templateUrl: './user.html',
   styleUrl: './user.css'
 })
@@ -18,6 +19,8 @@ export class User {
   }
 
   name = 'Gustavo J Valkovich';
+  isVisible = true;
+
   message = '';
 
   onClick() {
