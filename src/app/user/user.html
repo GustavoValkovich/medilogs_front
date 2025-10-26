@@ -1,4 +1,21 @@
-<p>{{name}} {{message}}</p>
-<input [(ngModel)]="name"/>
+<p>User ID: {{id}}</p>
 
-<div *ngIf="isVisible">Now you see me!</div>
+
+<p>Login</p>
+
+Usuario: <input [(ngModel)]="user" />
+
+Contraseña: <input [(ngModel)]="password" />
+
+<button (click)="onClick()">Login</button>
+
+
+
+<div *ngIf="isVisible">Usuario correcto!
+    
+<p>Hola {{ name }}</p>
+
+<ul ><li *ngFor="let menu of menus">{{ menu }}</li></ul>
+
+</div>
+

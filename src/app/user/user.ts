@@ -1,30 +1,47 @@
 import { Component } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import {NgIf} from "@angular/common";
+import { NgFor, NgIf, NgSwitch } from '@angular/common';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-user',
-  imports: [FormsModule, NgIf],
+  imports: [FormsModule, NgIf, NgFor],
   templateUrl: './user.html',
   styleUrl: './user.css'
 })
 export class User {
 
+  id: string | null = null;
+
+  constructor(private router: ActivatedRoute) {
+    this.router.params.subscribe(params => {
+      this.id = params['id'];
+    });
+  }
+
   ngOnInit() {
-    console.log('User component initialized');
+    console.log('UserComponent initialized');
   }
 
   ngOnDestroy() {
-    console.log('User component destroyed');
+    console.log('UserComponent destroyed');
   }
 
-  name = 'Gustavo J Valkovich';
-  isVisible = true;
+
+  name = 'Gustavo';
+
+  user = '';
+  
+  password = '';
+
+  isVisible = false;
 
   message = '';
 
+  menus = ['Home', 'About', 'Contact', 'Services'];
+
   onClick() {
-    this.message = 'Button clicked!';
-    console.log(this.message);
+    this.isVisible = this.user === this.password ? true : false;
   }
+
 }
