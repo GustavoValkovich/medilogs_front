@@ -1,5 +1,4 @@
 import { Routes } from '@angular/router';
-<<<<<<< HEAD
 import { LayoutComponent } from './layout/layout.component';
 
 export const routes: Routes = [
@@ -72,12 +71,3 @@ export const routes: Routes = [
   },
   { path: '**', redirectTo: '' },
 ];
-=======
-import { User } from './user/user';
-import { HomeComponent } from './home/home.component';
-
-export const routes: Routes = [
-    { path: 'user', component: User}, 
-    { path: 'user/:id', component: User}, 
-    { path: 'home', component: HomeComponent }];
->>>>>>> fa56c24e14c506e7191230e2ba78a829e12a72c2
