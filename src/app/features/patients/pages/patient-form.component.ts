@@ -1,0 +1,100 @@
+import { Component, OnInit, inject } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
+import { ActivatedRoute, Router, RouterLink } from '@angular/router';
+import { PatientsService } from '../services/patients.service';
+import { Patient } from '../../../core/models/patient.model';
+
+@Component({
+  standalone: true,
+  selector: 'app-patient-form',
+  imports: [CommonModule, ReactiveFormsModule, RouterLink],
+  template: `
+    <div class="card">
+      <div class="toolbar">
+        <h2>{{ isEdit ? 'Editar Paciente' : 'Nuevo Paciente' }}</h2>
+        <a routerLink="/patients" class="button">Volver</a>
+      </div>
+
+      <form [formGroup]="form" (ngSubmit)="onSubmit()" class="row">
+        <div class="col">
+          <label>Nombre</label>
+          <input class="input" formControlName="firstName" />
+        </div>
+        <div class="col">
+          <label>Apellido</label>
+          <input class="input" formControlName="lastName" />
+        </div>
+        <div class="col">
+          <label>DNI</label>
+          <input class="input" formControlName="documentNumber" />
+        </div>
+        <div class="col">
+          <label>Email</label>
+          <input class="input" type="email" formControlName="email" />
+        </div>
+        <div class="col">
+          <label>Teléfono</label>
+          <input class="input" formControlName="phone" />
+        </div>
+        <div class="col">
+          <label>Fecha Nacimiento</label>
+          <input class="input" type="date" formControlName="birthDate" />
+        </div>
+
+        <div style="width:100%; display:flex; gap:8px; margin-top:12px;">
+          <button class="button" type="button" (click)="onCancel()">Cancelar</button>
+          <button class="button primary" type="submit" [disabled]="form.invalid || loading">
+            {{ loading ? 'Guardando...' : 'Guardar' }}
+          </button>
+        </div>
+      </form>
+    </div>
+  `
+})
+export class PatientFormComponent implements OnInit {
+  private readonly fb = inject(FormBuilder);
+  private readonly svc = inject(PatientsService);
+  private readonly route = inject(ActivatedRoute);
+  private readonly router = inject(Router);
+
+  loading = false;
+  isEdit = false;
+  id: string | null = null;
+
+  form = this.fb.group({
+    firstName: ['', [Validators.required, Validators.minLength(2)]],
+    lastName:  ['', [Validators.required, Validators.minLength(2)]],
+    documentNumber: [''],
+    email: ['', [Validators.email]],
+    phone: [''],
+    birthDate: [''],
+  });
+
+  ngOnInit(): void {
+    this.id = this.route.snapshot.paramMap.get('id');
+    this.isEdit = !!this.id;
+    if (this.isEdit && this.id) {
+      this.loading = true;
+      this.svc.byId(this.id).subscribe({
+        next: (p) => { this.form.patchValue(p as any); this.loading = false; },
+        error: () => { this.loading = false; alert('No se pudo cargar el paciente'); },
+      });
+    }
+  }
+
+  onCancel(): void { this.router.navigate(['/patients']); }
+
+  onSubmit(): void {
+    if (this.form.invalid) return;
+    const payload: Patient = this.form.value as Patient;
+    this.loading = true;
+    const obs = this.isEdit && this.id
+      ? this.svc.update(this.id, payload)
+      : this.svc.create(payload);
+    obs.subscribe({
+      next: () => { this.loading = false; this.router.navigate(['/patients']); },
+      error: () => { this.loading = false; alert('No se pudo guardar'); },
+    });
+  }
+}
