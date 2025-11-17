@@ -1,0 +1,9 @@
+<div *ngIf="!isAuthRoute">
+  <div class="neg-btn-container">
+    <button mat-fab color="primary" aria-label="Negatoscopio" (click)="open($event)">
+      <mat-icon>branding_watermark</mat-icon>
+    </button>
+    <div class="neg-label">Negatoscopio</div>
+  </div>
+  <div class="neg-overlay" *ngIf="isOpen" (click)="close()" role="button" tabindex="0" (keydown.enter)="close()" (keydown.space)="close()"></div>
+</div>

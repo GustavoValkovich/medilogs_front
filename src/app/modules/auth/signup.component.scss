@@ -1,0 +1,32 @@
+:host { display:block; }
+
+.signup-root {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: calc(100vh - 64px);
+  padding: 24px;
+  background: linear-gradient(180deg, #f7fafc 0%, #eef2f7 100%);
+}
+
+.signup-card {
+  width: 100%;
+  max-width: 780px;
+  border-radius: 12px;
+  box-shadow: 0 10px 30px rgba(16,24,40,0.08);
+}
+
+.signup-form { display:flex; flex-direction:column; gap:12px; }
+.full { width:100%; }
+.half { width:calc(50% - 8px); }
+.two-cols { display:flex; gap:16px; }
+
+.actions { display:flex; align-items:center; gap:12px; margin-top:8px; }
+.login-link { margin-left:auto; }
+.error { margin-top:12px; color:#b00020; font-size:0.95rem; }
+
+@media (max-width: 720px) {
+  .two-cols { flex-direction:column; }
+  .half { width:100%; }
+  .signup-card { margin: 0 12px; }
+}

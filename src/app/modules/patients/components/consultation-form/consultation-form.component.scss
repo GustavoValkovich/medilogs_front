@@ -1,0 +1,9 @@
+:host { display: block; }
+.consultation-root { max-width: 900px; margin: 18px auto; }
+.consultation-card { padding: 16px; }
+.consultation-title { margin: 0 0 12px 0; }
+.form-actions { margin-top: 12px; display: flex; gap: 12px; }
+.consultation-card .full { margin-top: 20px; }
+.history-card { margin-top: 16px; padding: 16px; }
+.back-actions { display: flex; justify-content: flex-end; margin-top: 12px; }
+.clickable-row { cursor: pointer; }

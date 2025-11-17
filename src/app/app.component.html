@@ -1,0 +1,71 @@
+<mat-toolbar color="primary" *ngIf="!isAuthRoute" class="app-toolbar">
+  <span class="app-title">Medilogs</span>
+  <span class="spacer"></span>
+  <ng-container *ngIf="isLoggedIn; else guestLinks">
+    <span class="doctor" role="button" tabindex="0" (click)="openDoctorPanel()" (keydown.enter)="openDoctorPanel()" (keydown.space)="$event.preventDefault(); openDoctorPanel()" title="Ver/editar perfil" aria-label="Ver o editar perfil">Dr/a: {{ doctorName || '' }}</span>
+    <button mat-icon-button aria-label="logout" (click)="logout()" title="Cerrar sesión">
+      <mat-icon>exit_to_app</mat-icon>
+    </button>
+  </ng-container>
+  <ng-template #guestLinks>
+    <a mat-button routerLink="/login">Ingresar</a>
+  </ng-template>
+</mat-toolbar>
+
+<mat-sidenav-container class="app-sidenav-container">
+  <mat-sidenav #drawer mode="over" position="end" class="doctor-sidenav">
+    <div class="sidenav-header">
+      <h3>Mi perfil</h3>
+      <mat-divider></mat-divider>
+    </div>
+    <div class="sidenav-content">
+      <form class="doctor-form">
+        <mat-form-field appearance="outline">
+          <mat-label>Nombre</mat-label>
+          <input matInput [value]="doctorData.first_name || ''" (input)="doctorData.first_name = $any($event.target).value" />
+        </mat-form-field>
+
+        <mat-form-field appearance="outline">
+          <mat-label>Apellido</mat-label>
+          <input matInput [value]="doctorData.last_name || ''" (input)="doctorData.last_name = $any($event.target).value" />
+        </mat-form-field>
+
+        <mat-form-field appearance="outline">
+          <mat-label>Especialidad</mat-label>
+          <input matInput [value]="doctorData.specialty || ''" (input)="doctorData.specialty = $any($event.target).value" />
+        </mat-form-field>
+
+        <mat-form-field appearance="outline">
+          <mat-label>Teléfono</mat-label>
+          <input matInput [value]="doctorData.phone || ''" (input)="doctorData.phone = $any($event.target).value" />
+        </mat-form-field>
+
+        <mat-form-field appearance="outline">
+          <mat-label>Email</mat-label>
+          <input matInput [value]="doctorData.email || ''" (input)="doctorData.email = $any($event.target).value" />
+        </mat-form-field>
+
+        <mat-form-field appearance="outline">
+          <mat-label>Matrícula</mat-label>
+          <input matInput [value]="doctorData.license_number || ''" (input)="doctorData.license_number = $any($event.target).value" />
+        </mat-form-field>
+
+        <mat-form-field appearance="outline">
+          <mat-label>Contraseña</mat-label>
+          <input matInput type="password" [value]="doctorData.password || ''" (input)="doctorData.password = $any($event.target).value" />
+        </mat-form-field>
+
+        <div class="sidenav-actions">
+          <button mat-flat-button color="primary" (click)="saveDoctor()">Guardar</button>
+          <button mat-button (click)="closeDoctorPanel()">Cerrar</button>
+        </div>
+      </form>
+    </div>
+  </mat-sidenav>
+
+  <mat-sidenav-content>
+    <router-outlet></router-outlet>
+  </mat-sidenav-content>
+</mat-sidenav-container>
+
+<app-negatoscopio></app-negatoscopio>

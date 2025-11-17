@@ -1,0 +1,65 @@
+### Node
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+### Angular / build outputs
+/dist/
+dist/
+*.tmp
+.tmp
+/out-tsc/
+build/
+/.angular/
+/.angular-cache/
+
+### Dependency caches
+.sass-cache/
+.cache/
+.cache-loader/
+
+### TypeScript
+*.tsbuildinfo
+
+### Logs
+logs
+*.log
+npm-debug.log*
+lerna-debug.log*
+
+### Runtime data
+pids
+*.pid
+*.seed
+*.pid.lock
+
+### Coverage
+/coverage/
+/nyc_output/
+
+### Environment files (local secrets)
+.env
+.env.*.local
+.env.local
+src/environments/*.local.ts
+
+### IDEs and editors
+.vscode/
+.idea/
+*.iml
+
+### macOS / Windows
+.DS_Store
+Thumbs.db
+
+### Misc
+/.sass-cache
+node-repl-history
+.parcel-cache/
+/.pnp
+/.pnp.js
+
+### Package files
+package-lock.json

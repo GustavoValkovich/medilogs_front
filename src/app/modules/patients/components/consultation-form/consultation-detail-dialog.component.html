@@ -1,0 +1,25 @@
+<div class="detail-root">
+  <h2 mat-dialog-title class="detail-title">
+    <mat-icon class="detail-icon" aria-hidden="true">event_note</mat-icon>
+    <span>Detalle de la consulta</span>
+  </h2>
+
+  <mat-dialog-content class="detail-content">
+    <div class="meta">
+      <div class="date" *ngIf="data?.created_at || data?.date">{{ (data?.created_at || data?.date) | date:'dd/MM/yyyy HH:mm' }}</div>
+      <div class="patient" *ngIf="patientName">Paciente: {{ patientName }}</div>
+      <div class="patient" *ngIf="!patientName && (data?.patient_id || data?.patient)">Paciente: {{ data?.patient_id || (data?.patient?.id ? ('#' + data?.patient?.id) : '-') }}</div>
+    </div>
+
+    <div class="motivo-card">
+      <label class="label">Motivo</label>
+      <div class="motivo" role="article">{{ getConsultationText() || '-' }}</div>
+    </div>
+
+    <div class="notes-card" *ngIf="data?.notes">
+      <label class="label">Notas</label>
+      <div class="notes">{{ data?.notes }}</div>
+    </div>
+  </mat-dialog-content>
+
+</div>

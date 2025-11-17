@@ -1,0 +1,32 @@
+import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { RouterModule } from '@angular/router';
+
+import { MaterialModule } from '../../shared/material.module';
+
+import { PatientsListComponent } from './components/patients-list/patients-list.component';
+import { PatientFormComponent } from './components/patient-form/patient-form.component';
+import { ConsultationFormComponent } from './components/consultation-form/consultation-form.component';
+import { NotesDialogComponent } from './components/consultation-form/notes-dialog.component';
+import { ConsultationDetailDialogComponent } from './components/consultation-form/consultation-detail-dialog.component';
+import { PatientsRoutingModule } from './patients-routing.module';
+
+@NgModule({
+  declarations: [],
+  imports: [
+    CommonModule,
+    FormsModule,
+    ReactiveFormsModule,
+    RouterModule,
+    MaterialModule,
+    PatientsRoutingModule,
+    PatientsListComponent,
+    PatientFormComponent,
+    ConsultationFormComponent,
+    NotesDialogComponent,
+    ConsultationDetailDialogComponent,
+  ],
+  schemas: [CUSTOM_ELEMENTS_SCHEMA],
+})
+export class PatientsModule {}

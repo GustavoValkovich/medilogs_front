@@ -1,0 +1,79 @@
+<div class="patients-root">
+  <mat-card class="patients-card">
+    <div class="header">
+      <h2>Pacientes</h2>
+      <div class="actions">
+        <button mat-flat-button color="primary" (click)="createNew()">Nuevo Paciente</button>
+      </div>
+    </div>
+
+    <div *ngIf="loading" class="loading">Cargando…</div>
+    <div *ngIf="error" class="error">{{ error }}</div>
+
+    <div *ngIf="!loading && patients.length">
+      <div class="filter-row">
+        <mat-form-field appearance="outline" class="filter-field" style="width:100%;">
+          <mat-label>Filtrar pacientes</mat-label>
+          <input matInput placeholder="Buscar por nombre, obra social, género, edad, documento" [(ngModel)]="filterText" (ngModelChange)="applyFilter($event)">
+          <button mat-icon-button matSuffix *ngIf="filterText" (click)="filterText = ''; applyFilter('')" aria-label="Limpiar filtro">
+            <mat-icon>close</mat-icon>
+          </button>
+        </mat-form-field>
+      </div>
+      <div class="table-wrap">
+      <table class="mat-elevation-z1 table">
+      <thead>
+        <tr>
+          <th>Nombre completo</th>
+          <th>Obra Social</th>
+          <th>Género</th>
+          <th>Edad</th>
+          <th>DNI</th>          
+          <th>Acciones</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let p of filteredPatients; trackBy: trackByPatientId">
+          <td>{{ p.full_name }}</td>
+          <td>{{ p.insurance || '—' }}</td>
+          <td>{{ p.gender || '—' }}</td>
+          <td>{{ getAge(p.birth_date) }}</td>
+          <td>{{ p.document || '—' }}</td>
+          <td class="row-actions">
+            <button mat-stroked-button color="primary" [routerLink]="['/patients', p.id, 'consultations']">Ver consultas</button>
+            <button mat-button color="accent" [routerLink]="['/patients', p.id]">Editar</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+        </div>
+      </div>
+
+        <p *ngIf="!loading && !patients.length" class="empty">No hay pacientes registrados.</p>
+  </mat-card>
+  
+      <div class="bottom-cards">
+        <mat-card class="small-card calendar-card">
+          <div class="calendar-wrap">
+
+            <mat-calendar [selected]="selectedDate" (selectedChange)="onDateChange($event)"></mat-calendar>
+          </div>
+        </mat-card>
+
+        <mat-card class="small-card consults-card">
+      <h3>Consultas — {{ formatDateDDMMYYYY(selectedDate) }}</h3>
+          <div *ngIf="loadingConsults" class="loading">Cargando…</div>
+          <div *ngIf="!loadingConsults && !consultationsForDate.length" class="empty">No hay consultas para esta fecha.</div>
+          <ul *ngIf="!loadingConsults && consultationsForDate.length" class="consult-list">
+            <li *ngFor="let c of consultationsForDate; trackBy: trackByConsultationId" (click)="openConsultationDetail(c)" class="consult-item" tabindex="0" role="button" aria-label="Detalle de consulta">
+              <div class="consult-row">
+                <div class="time-name">
+                  <div class="time">{{ getConsultationTime(c) }}</div>
+                  <div class="pname">{{ getPatientName(c.patient_id) }}</div>
+                </div>
+              </div>
+            </li>
+          </ul>
+        </mat-card>
+      </div>
+</div>

@@ -1,0 +1,62 @@
+<mat-card class="patient-card">
+  <mat-card-title>Paciente</mat-card-title>
+  <mat-card-content>
+    <form [formGroup]="form" class="form">
+      <div class="two-cols">
+        <mat-form-field appearance="outline">
+          <mat-label>Nombre completo</mat-label>
+          <input matInput type="text" formControlName="full_name" placeholder="Nombre y apellido" />
+        </mat-form-field>
+
+        <mat-form-field appearance="outline">
+          <mat-label>Documento</mat-label>
+          <input matInput type="text" formControlName="document" />
+        </mat-form-field>
+      </div>
+
+      <div class="two-cols">
+        <mat-form-field appearance="outline">
+          <mat-label>Fecha de nacimiento</mat-label>
+          <input matInput type="date" formControlName="birth_date" />
+        </mat-form-field>
+
+        <mat-form-field appearance="outline">
+          <mat-label>Ciudad</mat-label>
+          <input matInput type="text" formControlName="city" />
+        </mat-form-field>
+      </div>
+      
+      <div class="two-cols">
+        <mat-form-field appearance="outline">      
+              <mat-label>Email</mat-label>
+              <input matInput type="email" formControlName="email" />
+            </mat-form-field>
+
+        <mat-form-field appearance="outline">
+          <mat-label>Obra social</mat-label>
+          <input matInput type="text" formControlName="insurance" />
+        </mat-form-field>
+      </div>
+
+      <div class="two-cols">
+        <mat-form-field appearance="outline" class="small">
+          <mat-label>Género</mat-label>
+          <input matInput type="text" formControlName="gender" maxlength="20" placeholder="ej: masculino" />
+        </mat-form-field>
+
+        <mat-form-field appearance="outline" class="full">
+          <mat-label>Notas</mat-label>
+          <textarea matInput formControlName="notes" rows="3"></textarea>
+        </mat-form-field>
+      </div>
+    </form>
+  </mat-card-content>
+
+    <mat-card-actions align="end" class="actions">
+    <button mat-stroked-button color="primary" [routerLink]="['/patients']">Volver</button>
+    <button mat-flat-button color="primary" (click)="save()">Guardar</button>
+    <span *ngIf="form.value.id" class="delete-wrapper" (click)="onDeleteClick($event)">
+      <button mat-button color="warn" [disabled]="!canDelete" [attr.title]="canDelete ? '' : 'No se puede eliminar: tiene consultas asociadas'">Eliminar paciente</button>
+    </span>
+  </mat-card-actions>
+</mat-card>

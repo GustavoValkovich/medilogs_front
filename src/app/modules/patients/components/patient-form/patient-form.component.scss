@@ -1,0 +1,16 @@
+:host{display:block;padding:16px}
+
+.patient-card { max-width: 900px; margin: 20px auto 0; }
+.patient-card mat-card-title { margin-bottom: 8px; }
+.patient-card mat-card-content { padding-top: 18px; }
+.form { display:block; }
+.two-cols { display:flex; gap:16px; margin-bottom:12px; align-items:start; }
+.two-cols .full { flex: 1 1 100%; }
+.two-cols .small { flex: 0 0 180px; max-width: 220px; }
+mat-form-field { flex: 1 1 50%; }
+.actions { display:flex; gap:12px; justify-content:flex-end; padding: 8px 16px 16px; }
+
+@media (max-width: 600px) {
+	.two-cols { flex-direction: column; }
+	mat-form-field { width: 100%; }
+}

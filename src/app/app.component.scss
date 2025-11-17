@@ -1,0 +1,24 @@
+nav {
+  display: block;
+}
+
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+.app-toolbar { padding: 0 16px; }
+.app-title { font-weight: 600; font-size: 1.1rem; }
+.spacer { flex: 1 1 auto; }
+.doctor {
+  margin-left: 10px;
+  font-weight: 500;
+  font-size: 0.95rem;
+  line-height: 1;
+  cursor: pointer;
+}
+
+.app-sidenav-container { height: calc(100vh - 64px); }
+.doctor-sidenav { width: 380px; padding: 8px 12px; }
+.sidenav-header { padding-bottom: 8px; }
+.sidenav-content { padding: 8px 4px; display:flex; flex-direction:column; gap:12px; }
+.doctor-form mat-form-field { width: 100%; }
+.sidenav-actions { display:flex; gap:8px; justify-content:flex-end; margin-top:12px }
+.menu-button { margin-right: 8px; }

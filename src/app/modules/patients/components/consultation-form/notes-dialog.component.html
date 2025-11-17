@@ -1,0 +1,11 @@
+<h2 mat-dialog-title>
+  <mat-icon class="warn-icon" color="warn" aria-hidden="true">warning</mat-icon>
+  <span class="title">Atención</span>
+</h2>
+
+<mat-dialog-content class="notes-content">
+  <div *ngIf="data?.notes; else noNotes" class="notes-text">{{ data?.notes }}</div>
+  <ng-template #noNotes>
+    <div class="no-notes">No hay notas para este paciente.</div>
+  </ng-template>
+</mat-dialog-content>
