@@ -60,6 +60,3 @@ node-repl-history
 .parcel-cache/
 /.pnp
 /.pnp.js
-
-### Package files
-package-lock.json

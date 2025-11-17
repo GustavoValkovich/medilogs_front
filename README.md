@@ -1,4 +1,4 @@
-# Medilogs – Frontend (Angular 20)
+# Medilogs – Frontend
 
 Angular frontend application to manage doctors, patients, and medical consultations.  
 This project consumes the REST API provided by the **Medilogs** backend (default URL: `http://localhost:3000`).
@@ -7,13 +7,13 @@ This project consumes the REST API provided by the **Medilogs** backend (default
 
 ## Technology Stack
 
-- **Angular 20** (standalone components + NgModules)
+- **Angular 20**
 - **TypeScript 5.9**
 - **Angular Material**
 - **RxJS**
 - **Angular Router**
 - **SCSS**
-- **ESLint** (via `angular-eslint`)
+- **ESLint**
 
 ---
 
