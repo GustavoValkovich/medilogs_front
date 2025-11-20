@@ -41,7 +41,10 @@
       <div class="two-cols">
         <mat-form-field appearance="outline" class="small">
           <mat-label>Género</mat-label>
-          <input matInput type="text" formControlName="gender" maxlength="20" placeholder="ej: masculino" />
+          <mat-select formControlName="gender" placeholder="Seleccionar">
+            <mat-option value="Masculino">Masculino</mat-option>
+            <mat-option value="Femenino">Femenino</mat-option>
+          </mat-select>
         </mat-form-field>
 
         <mat-form-field appearance="outline" class="full">
