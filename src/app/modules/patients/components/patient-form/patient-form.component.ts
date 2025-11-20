@@ -46,6 +46,65 @@ export class PatientFormComponent {
   ];
 
   filteredInsurances!: Observable<string[]>;
+  
+  cityOptions: string[] = [
+    // Localidades del departamento General López
+    'Venado Tuerto',
+    'Firmat',
+    'Elortondo',
+    'Wheelwright',
+    'Villa Cañás',
+    'Teodelina',
+    'Melincué',
+    'Chovet',
+    'Casilda',
+    'Bigand',
+    'Los Quirquinchos',
+    'Arequito',
+    'Fuentes',
+    'Sancti Spíritu',
+    'San Eduardo',
+    'San Gregorio',
+    'Santa Isabel',
+    'Godeken',
+    'Carreras',
+    'Chañar Ladeado',
+    'San José de la Esquina',
+
+    // Otras localidades importantes de Santa Fe (orden alfabético)
+    'Acebal',
+    'Arroyo Seco',
+    'Armstrong',
+    'Cañada de Gómez',
+    'Ceres',
+    'Coronda',
+    'Esperanza',
+    'Funes',
+    'Gálvez',
+    'Granadero Baigorria',
+    'Helvecia',
+    'Las Parejas',
+    'Las Rosas',
+    'Pérez',
+    'Rafaela',
+    'Reconquista',
+    'Roldán',
+    'Rosario',
+    'San Cristóbal',
+    'San Javier',
+    'San Justo',
+    'San Lorenzo',
+    'Santa Fe',
+    'Sunchales',
+    'Tostado',
+    'Vera',
+    'Villa Constitución',
+    'Villa Gobernador Gálvez',
+    'Villa Ocampo',
+    'Zavalla'
+  ];
+
+  filteredCities!: Observable<string[]>;
 
   constructor(
     private fb: FormBuilder,
@@ -121,11 +180,32 @@ export class PatientFormComponent {
     } catch {
       this.filteredInsurances = new Observable<string[]>(observer => { observer.next(this.insuranceOptions); observer.complete(); });
     }
+
+    // setup city autocomplete filtering
+    try {
+      const ctl = this.form.get('city');
+      if (ctl) {
+        this.filteredCities = ctl.valueChanges.pipe(
+          startWith(ctl.value || ''),
+          map(v => (typeof v === 'string' ? v : (v || ''))),
+          map(name => name ? this._filterCity(name) : this.cityOptions.slice())
+        );
+      } else {
+        this.filteredCities = new Observable<string[]>(observer => { observer.next(this.cityOptions); observer.complete(); });
+      }
+    } catch {
+      this.filteredCities = new Observable<string[]>(observer => { observer.next(this.cityOptions); observer.complete(); });
+    }
   }
 
   private _filterInsurance(value: string): string[] {
     const filterValue = value.toLowerCase();
     return this.insuranceOptions.filter(opt => opt.toLowerCase().includes(filterValue));
+  }
+
+  private _filterCity(value: string): string[] {
+    const filterValue = value.toLowerCase();
+    return this.cityOptions.filter(opt => opt.toLowerCase().includes(filterValue));
   }
 
   deletePatient() {
