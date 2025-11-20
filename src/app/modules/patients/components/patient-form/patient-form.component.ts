@@ -3,6 +3,8 @@ import { CommonModule } from '@angular/common';
 import { FormBuilder, Validators, ReactiveFormsModule } from '@angular/forms';
 import { ActivatedRoute, Router, RouterModule } from '@angular/router';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { Observable } from 'rxjs';
+import { map, startWith } from 'rxjs/operators';
 
 import { PatientService } from '../../../../core/services/patient.service';
 import { ConsultationService } from '../../../../core/services/consultation.service';
@@ -29,6 +31,21 @@ export class PatientFormComponent {
     city: [''],
     doctor_id: [],
   });
+
+  insuranceOptions: string[] = [
+    'OSDE',
+    'Swiss Medical',
+    'Galeno',
+    'Omint',
+    'Medicus',
+    'PAMI',
+    'Sancor Salud',
+    'Provincia Salud',
+    'Ajustar Salud',
+    'Salud ART'
+  ];
+
+  filteredInsurances!: Observable<string[]>;
 
   constructor(
     private fb: FormBuilder,
@@ -88,6 +105,27 @@ export class PatientFormComponent {
         // ignore
       }
     }
+
+    // setup insurance autocomplete filtering
+    try {
+      const control = this.form.get('insurance');
+      if (control) {
+        this.filteredInsurances = control.valueChanges.pipe(
+          startWith(control.value || ''),
+          map(v => (typeof v === 'string' ? v : (v || ''))),
+          map(name => name ? this._filterInsurance(name) : this.insuranceOptions.slice())
+        );
+      } else {
+        this.filteredInsurances = new Observable<string[]>(observer => { observer.next(this.insuranceOptions); observer.complete(); });
+      }
+    } catch {
+      this.filteredInsurances = new Observable<string[]>(observer => { observer.next(this.insuranceOptions); observer.complete(); });
+    }
+  }
+
+  private _filterInsurance(value: string): string[] {
+    const filterValue = value.toLowerCase();
+    return this.insuranceOptions.filter(opt => opt.toLowerCase().includes(filterValue));
   }
 
   deletePatient() {

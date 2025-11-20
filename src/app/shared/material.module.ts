@@ -15,6 +15,7 @@ import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatDividerModule } from '@angular/material/divider';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule, MAT_DATE_LOCALE } from '@angular/material/core';
+import { MatAutocompleteModule } from '@angular/material/autocomplete';
 
 @NgModule({
   providers: [ { provide: MAT_DATE_LOCALE, useValue: 'es-AR' } ],
@@ -27,6 +28,7 @@ import { MatNativeDateModule, MAT_DATE_LOCALE } from '@angular/material/core';
     MatPaginatorModule,
     MatSortModule,
     MatSelectModule,
+    MatAutocompleteModule,
     MatCardModule,
     MatToolbarModule,
     MatDialogModule,
