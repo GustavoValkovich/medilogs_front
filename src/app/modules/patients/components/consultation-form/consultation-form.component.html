@@ -1,8 +1,15 @@
 <div class="consultation-root">
   <mat-card class="consultation-card">
   <div class="consultation-header">
-    <h4 class="consultation-subtitle">Nueva consulta para:</h4>
-    <h3 class="consultation-patient-name">{{ patientName || '' }}</h3>
+    <div class="consultation-header-left">
+      <h4 class="consultation-subtitle">Nueva consulta para:</h4>
+      <h3 class="consultation-patient-name">{{ patientName || '' }}</h3>
+    </div>
+    <div class="consultation-header-right">
+      <button mat-icon-button color="primary" aria-label="Editar paciente" (click)="goToEditPatient()">
+        <mat-icon>edit</mat-icon>
+      </button>
+    </div>
   </div>
   <form [formGroup]="form" (ngSubmit)="submit()">
       <mat-form-field appearance="fill" class="full"><mat-label>Motivo</mat-label><input matInput formControlName="motivo"></mat-form-field>

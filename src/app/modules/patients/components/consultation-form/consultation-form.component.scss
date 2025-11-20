@@ -2,6 +2,9 @@
 .consultation-root { max-width: 900px; margin: 18px auto; }
 .consultation-card { padding: 16px; }
 .consultation-title { margin: 0 0 12px 0; }
+.consultation-header { display: flex; justify-content: space-between; align-items: center; }
+.consultation-header-left { display: flex; flex-direction: column; }
+.consultation-header-right { display: flex; align-items: center; }
 .form-actions { margin-top: 12px; display: flex; gap: 12px; }
 .consultation-card .full { margin-top: 20px; }
 .history-card { margin-top: 16px; padding: 16px; }

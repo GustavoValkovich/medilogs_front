@@ -21,6 +21,7 @@ import { MaterialModule } from '../../../../shared/material.module';
 
 export class ConsultationFormComponent {
   patientName?: string;
+  patientId?: number | null;
   form = this.fb.group({
     id: [],
     motivo: ['', Validators.required],
@@ -45,6 +46,7 @@ export class ConsultationFormComponent {
     if (id) {
       const nid = Number(id);
       if (!isNaN(nid)) {
+        this.patientId = nid;
         this.patientService.get(nid).subscribe({
           next: (p) => {
             this.patientName = p?.full_name;
@@ -67,6 +69,14 @@ export class ConsultationFormComponent {
         });
       }
     }
+  }
+
+  goToEditPatient() {
+    const id = this.patientId ?? Number(this.route.snapshot.paramMap.get('id'));
+    if (!id || isNaN(Number(id))) return;
+    try {
+      this.router.navigate(['/patients', id]);
+    } catch {}
   }
 
   submit() {
