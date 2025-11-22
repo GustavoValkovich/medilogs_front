@@ -1,0 +1,24 @@
+.analysis-root { padding: 20px; display:flex; justify-content:center; }
+.analysis-root mat-card { width:100%; max-width:980px; padding:12px; }
+.filters { display:flex; flex-direction:column; gap:14px; }
+.filter-row { display:flex; gap:16px; align-items:flex-start; flex-wrap:wrap; }
+.filter-row.two-cols { align-items:flex-start; }
+.filter-block { display:flex; gap:12px; align-items:flex-start; flex:1 1 0; min-width:220px; }
+.label { width:140px; font-weight:600; margin-top:6px; color: rgba(0,0,0,0.7); }
+.result { margin-top:18px; display:flex; flex-direction:column; align-items:center; }
+.result h3 { margin-bottom:12px; }
+.filters mat-form-field { min-width:200px; }
+.filters mat-selection-list { max-width:300px; }
+
+.chart-wrap { width:100%; display:flex; justify-content:center; }
+
+.chart-wrap { display:flex; gap:20px; align-items:flex-start; justify-content:space-between; }
+.chart-col { flex: 0 0 50%; display:flex; justify-content:center; }
+.table-col { flex: 0 0 42%; }
+.patients-table { width:100%; border-collapse:collapse; }
+.patients-table thead th { text-align:left; padding:8px 12px; font-weight:600; border-bottom:1px solid rgba(0,0,0,0.08); }
+.patients-table tbody td { padding:10px 12px; border-bottom:1px solid rgba(0,0,0,0.04); }
+.list-card { padding:12px; }
+.list-title { margin:0 0 8px 0; font-size:14px; font-weight:600; }
+
+

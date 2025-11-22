@@ -3,12 +3,14 @@ import { RouterModule, Routes } from '@angular/router';
 import { PatientsListComponent } from './components/patients-list/patients-list.component';
 import { PatientFormComponent } from './components/patient-form/patient-form.component';
 import { ConsultationFormComponent } from './components/consultation-form/consultation-form.component';
+import { AnalysisComponent } from './components/analysis/analysis.component';
 
 const routes: Routes = [
   { path: '', component: PatientsListComponent },
   { path: 'new', component: PatientFormComponent },
-  { path: ':id', component: PatientFormComponent },
+  { path: 'analysis', component: AnalysisComponent },
   { path: ':id/consultations', component: ConsultationFormComponent },
+  { path: ':id', component: PatientFormComponent },
 ];
 
 @NgModule({ imports: [RouterModule.forChild(routes)], exports: [RouterModule] })

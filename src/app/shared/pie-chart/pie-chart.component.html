@@ -1,0 +1,16 @@
+<div class="pie-root">
+  <svg viewBox="0 0 200 200" class="pie-svg" role="img" aria-label="Gráfico de torta">
+    <g *ngFor="let a of arcs">
+      <!-- full circle if value equals total -->
+      <circle *ngIf="a.value === total" cx="100" cy="100" r="80" [attr.fill]="a.color"></circle>
+      <path *ngIf="a.value !== total" [attr.d]="arcPath(a.startAngle, a.endAngle, 80, 100, 100)" [attr.fill]="a.color"></path>
+    </g>
+  </svg>
+
+  <div class="legend" *ngIf="showLegend">
+    <div *ngFor="let a of arcs" class="legend-item">
+      <span class="swatch" [style.background]="a.color"></span>
+      <span class="label">{{ a.label }} — {{ a.value }} ({{ a.percent }}%)</span>
+    </div>
+  </div>
+</div>

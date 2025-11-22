@@ -10,6 +10,8 @@ import { PatientFormComponent } from './components/patient-form/patient-form.com
 import { ConsultationFormComponent } from './components/consultation-form/consultation-form.component';
 import { NotesDialogComponent } from './components/consultation-form/notes-dialog.component';
 import { ConsultationDetailDialogComponent } from './components/consultation-form/consultation-detail-dialog.component';
+import { AnalysisComponent } from './components/analysis/analysis.component';
+import { PieChartComponent } from '../../shared/pie-chart/pie-chart.component';
 import { PatientsRoutingModule } from './patients-routing.module';
 
 @NgModule({
@@ -26,6 +28,8 @@ import { PatientsRoutingModule } from './patients-routing.module';
     ConsultationFormComponent,
     NotesDialogComponent,
     ConsultationDetailDialogComponent,
+    AnalysisComponent,
+    PieChartComponent,
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
 })

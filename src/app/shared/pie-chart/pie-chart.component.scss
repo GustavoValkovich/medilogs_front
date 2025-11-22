@@ -1,0 +1,6 @@
+.pie-root { display:flex; gap:20px; align-items:flex-start; justify-content:center; padding:12px; }
+.pie-svg { width:220px; height:220px; border-radius:8px; background:transparent; }
+.legend { display:flex; flex-direction:column; gap:8px; max-width:260px; }
+.legend-item { display:flex; gap:10px; align-items:center; }
+.swatch { width:18px; height:18px; border-radius:4px; display:inline-block; box-shadow: 0 0 0 1px rgba(0,0,0,0.06) inset; }
+.label { font-size:13px; color: rgba(0,0,0,0.85); }

@@ -1,0 +1,78 @@
+<div class="analysis-root">
+  <mat-card>
+    <div class="header">
+      <h2>Análisis de datos</h2>
+    </div>
+
+    <form [formGroup]="form" class="filters" autocomplete="off">
+      <div class="filter-row two-cols">
+        <div class="filter-block">
+          <label class="label">Rangos de edad</label>
+          <mat-selection-list formControlName="ageRanges">
+            <mat-list-option value="0-10">0–10 años</mat-list-option>
+            <mat-list-option value="11-30">11–30 años</mat-list-option>
+            <mat-list-option value="31-60">31–60 años</mat-list-option>
+            <mat-list-option value="61+">+60 años</mat-list-option>
+          </mat-selection-list>
+        </div>
+
+        <div class="filter-block">
+          <label class="label">Género</label>
+          <mat-selection-list formControlName="genders">
+            <mat-list-option value="M">Masculino</mat-list-option>
+            <mat-list-option value="F">Femenino</mat-list-option>
+          </mat-selection-list>
+        </div>
+      </div>
+
+      <div class="filter-row">
+        <mat-form-field appearance="outline">
+          <mat-label>Obra social</mat-label>
+          <mat-select formControlName="insurance">
+            <mat-option value="">—</mat-option>
+            <mat-option *ngFor="let ins of availableInsurances" [value]="ins">{{ ins }}</mat-option>
+          </mat-select>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline">
+          <mat-label>Localidad</mat-label>
+          <mat-select formControlName="city">
+            <mat-option value="">—</mat-option>
+            <mat-option *ngFor="let c of availableCities" [value]="c">{{ c }}</mat-option>
+          </mat-select>
+        </mat-form-field>
+
+        <!-- Removed explicit grouping control: chart adapts automatically to applied filters -->
+      </div>
+    </form>
+
+    <div class="result">
+      <h3>Resultados — {{ filtered.length }} pacientes</h3>
+      <div class="chart-wrap">
+        <div class="chart-col">
+          <app-pie-chart [data]="pieData"></app-pie-chart>
+        </div>
+        <div class="table-col">
+          <mat-card class="list-card">
+            <h4 class="list-title">Pacientes que cumplen los criterios</h4>
+            <div *ngIf="!filtered.length" class="empty">No hay pacientes.</div>
+            <table *ngIf="filtered.length" class="mat-elevation-z1 patients-table">
+              <thead>
+                <tr>
+                  <th>Nombre</th>
+                  <th>DNI</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let p of filtered; trackBy: trackByPatientId">
+                  <td>{{ p.full_name }}</td>
+                  <td>{{ p.document || '—' }}</td>
+                </tr>
+              </tbody>
+            </table>
+          </mat-card>
+        </div>
+      </div>
+    </div>
+  </mat-card>
+</div>
