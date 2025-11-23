@@ -7,6 +7,9 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 .app-toolbar { padding: 0 16px; }
 .app-title { font-weight: 600; font-size: 1.1rem; }
 .app-logo { height: 32px; width: 32px; margin-right: 8px; border-radius: 4px; object-fit: contain; }
+.brand-link { display:flex; align-items:center; color:inherit; text-decoration:none; }
+.brand-link:focus, .brand-link:hover { text-decoration:none; }
+.brand-link .app-title, .brand-link .app-logo { cursor: pointer; }
 .spacer { flex: 1 1 auto; }
 .doctor {
   margin-left: 10px;

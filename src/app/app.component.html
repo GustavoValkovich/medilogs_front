@@ -1,6 +1,8 @@
 <mat-toolbar color="primary" *ngIf="!isAuthRoute" class="app-toolbar">
-  <img src="/android-chrome-192x192.png" alt="Medilogs logo" class="app-logo" />
-  <span class="app-title">Medilogs</span>
+  <a class="brand-link" routerLink="/patients" aria-label="Ir a pacientes">
+    <img src="/android-chrome-192x192.png" alt="Medilogs logo" class="app-logo" />
+    <span class="app-title">Medilogs</span>
+  </a>
   <span class="spacer"></span>
   <ng-container *ngIf="isLoggedIn; else guestLinks">
     <span class="doctor" role="button" tabindex="0" (click)="openDoctorPanel()" (keydown.enter)="openDoctorPanel()" (keydown.space)="$event.preventDefault(); openDoctorPanel()" title="Ver/editar perfil" aria-label="Ver o editar perfil">Dr/a: {{ doctorName || '' }}</span>
