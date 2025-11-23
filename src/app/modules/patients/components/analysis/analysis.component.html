@@ -16,47 +16,55 @@
           </mat-selection-list>
         </div>
 
-        <div class="filter-block">
-          <label class="label">Género</label>
-          <mat-selection-list formControlName="genders">
-            <mat-list-option value="M">Masculino</mat-list-option>
-            <mat-list-option value="F">Femenino</mat-list-option>
-          </mat-selection-list>
+        <div class="filter-block right-filters">
+          <div>
+            <label class="label">Género</label>
+            <mat-selection-list formControlName="genders">
+              <mat-list-option value="M">Masculino</mat-list-option>
+              <mat-list-option value="F">Femenino</mat-list-option>
+            </mat-selection-list>
+          </div>
+
+          <div class="below-gender">
+            <mat-form-field appearance="outline">
+              <mat-label>Obra social</mat-label>
+              <mat-select formControlName="insurance">
+                <mat-option value="">—</mat-option>
+                <mat-option *ngFor="let ins of availableInsurances" [value]="ins">{{ ins }}</mat-option>
+              </mat-select>
+            </mat-form-field>
+
+            <mat-form-field appearance="outline">
+              <mat-label>Localidad</mat-label>
+              <mat-select formControlName="city">
+                <mat-option value="">—</mat-option>
+                <mat-option *ngFor="let c of availableCities" [value]="c">{{ c }}</mat-option>
+              </mat-select>
+            </mat-form-field>
+          </div>
         </div>
-      </div>
-
-      <div class="filter-row">
-        <mat-form-field appearance="outline">
-          <mat-label>Obra social</mat-label>
-          <mat-select formControlName="insurance">
-            <mat-option value="">—</mat-option>
-            <mat-option *ngFor="let ins of availableInsurances" [value]="ins">{{ ins }}</mat-option>
-          </mat-select>
-        </mat-form-field>
-
-        <mat-form-field appearance="outline">
-          <mat-label>Localidad</mat-label>
-          <mat-select formControlName="city">
-            <mat-option value="">—</mat-option>
-            <mat-option *ngFor="let c of availableCities" [value]="c">{{ c }}</mat-option>
-          </mat-select>
-        </mat-form-field>
-
-        <!-- Removed explicit grouping control: chart adapts automatically to applied filters -->
       </div>
     </form>
 
     <div class="result">
-      <h3>Resultados — {{ filtered.length }} pacientes</h3>
-      <div class="chart-wrap">
-        <div class="chart-col">
-          <app-pie-chart [data]="pieData"></app-pie-chart>
+      <div class="result-top">
+        <div class="title-wrap">
+          <h3>Resultados — {{ filtered.length }} pacientes</h3>
         </div>
-        <div class="table-col">
-          <mat-card class="list-card">
-            <h4 class="list-title">Pacientes que cumplen los criterios</h4>
-            <div *ngIf="!filtered.length" class="empty">No hay pacientes.</div>
-            <table *ngIf="filtered.length" class="mat-elevation-z1 patients-table">
+      </div>
+
+      <div class="chart-wrap">
+        <mat-card class="chart-card">
+          <div class="chart-inner">
+            <app-pie-chart [data]="pieData"></app-pie-chart>
+          </div>
+        </mat-card>
+
+        <mat-card class="list-card">
+          <h4 class="list-title">Pacientes que cumplen los criterios</h4>
+          <div *ngIf="!filtered.length" class="empty">No hay pacientes.</div>
+          <div *ngIf="filtered.length" class="table-wrap">
+            <table class="mat-elevation-z1 patients-table">
               <thead>
                 <tr>
                   <th>Nombre</th>
@@ -70,8 +78,8 @@
                 </tr>
               </tbody>
             </table>
-          </mat-card>
-        </div>
+          </div>
+        </mat-card>
       </div>
     </div>
   </mat-card>

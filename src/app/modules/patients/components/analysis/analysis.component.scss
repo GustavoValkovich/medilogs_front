@@ -6,19 +6,27 @@
 .filter-block { display:flex; gap:12px; align-items:flex-start; flex:1 1 0; min-width:220px; }
 .label { width:140px; font-weight:600; margin-top:6px; color: rgba(0,0,0,0.7); }
 .result { margin-top:18px; display:flex; flex-direction:column; align-items:center; }
-.result h3 { margin-bottom:12px; }
+.result-top { width:100%; display:flex; justify-content:flex-start; }
+.title-wrap { flex: 0 0 55%; display:flex; justify-content:center; }
+.result h3 { margin:0 0 12px 0; }
 .filters mat-form-field { min-width:200px; }
 .filters mat-selection-list { max-width:300px; }
 
-.chart-wrap { width:100%; display:flex; justify-content:center; }
+.chart-wrap { width:100%; display:flex; gap:20px; align-items:flex-start; justify-content:space-between; }
 
-.chart-wrap { display:flex; gap:20px; align-items:flex-start; justify-content:space-between; }
-.chart-col { flex: 0 0 50%; display:flex; justify-content:center; }
-.table-col { flex: 0 0 42%; }
+.chart-card { flex: 1 1 55%; padding:12px; display:flex; align-items:center; justify-content:center; }
+.chart-inner { width:100%; display:flex; justify-content:center; }
+.list-card { flex: 0 0 38%; padding:12px; }
 .patients-table { width:100%; border-collapse:collapse; }
 .patients-table thead th { text-align:left; padding:8px 12px; font-weight:600; border-bottom:1px solid rgba(0,0,0,0.08); }
 .patients-table tbody td { padding:10px 12px; border-bottom:1px solid rgba(0,0,0,0.04); }
-.list-card { padding:12px; }
 .list-title { margin:0 0 8px 0; font-size:14px; font-weight:600; }
+
+.list-card .table-wrap { max-height: calc(3 * 48px); overflow-y: auto; -webkit-overflow-scrolling: touch; }
+.list-card .patients-table { width:100%; border-collapse:collapse; }
+.list-card .patients-table thead th { position:sticky; top:0; background:#fff; }
+.right-filters { display:flex; flex-direction:column; gap:8px; }
+.below-gender { display:flex; gap:8px; flex-direction:row; align-items:flex-end; }
+.below-gender mat-form-field { flex: 1 1 0; min-width:140px; }
 
 
