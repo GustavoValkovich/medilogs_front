@@ -10,7 +10,7 @@ import { PatientService } from '../../../../core/services/patient.service';
 import { Consultation } from '../../../../core/models/consultation.model';
 import { ConsultationService } from '../../../../core/services/consultation.service';
 import { MatDialog } from '@angular/material/dialog';
-import { ConsultationDetailDialogComponent } from '../consultation-form/consultation-detail-dialog.component';
+import { ConsultationDetailDialogComponent } from '../consultations/consultation-detail-dialog/consultation-detail-dialog.component';
 import { MaterialModule } from '../../../../shared/material.module';
 
 @Component({

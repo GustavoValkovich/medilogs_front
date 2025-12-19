@@ -2,9 +2,9 @@ import { Component, Injector, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 
-import { PatientService } from '../../../../core/services/patient.service';
-import { Patient } from '../../../../core/models/patient.model';
-import { MaterialModule } from '../../../../shared/material.module';
+import { PatientService } from '../../../../../core/services/patient.service';
+import { Patient } from '../../../../../core/models/patient.model';
+import { MaterialModule } from '../../../../../shared/material.module';
 
 @Component({
   selector: 'app-consultation-detail-dialog',

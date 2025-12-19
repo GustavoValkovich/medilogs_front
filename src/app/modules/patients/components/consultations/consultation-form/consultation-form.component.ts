@@ -5,11 +5,11 @@ import { ActivatedRoute, Router, RouterModule } from '@angular/router';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { MatDialog } from '@angular/material/dialog';
 
-import { NotesDialogComponent } from './notes-dialog.component';
-import { ConsultationDetailDialogComponent } from './consultation-detail-dialog.component';
-import { PatientService } from '../../../../core/services/patient.service';
-import { ConsultationService } from '../../../../core/services/consultation.service';
-import { MaterialModule } from '../../../../shared/material.module';
+import { NotesDialogComponent } from '../notes-dialog/notes-dialog.component';
+import { ConsultationDetailDialogComponent } from '../consultation-detail-dialog/consultation-detail-dialog.component';
+import { PatientService } from '../../../../../core/services/patient.service';
+import { ConsultationService } from '../../../../../core/services/consultation.service';
+import { MaterialModule } from '../../../../../shared/material.module';
 
 @Component({
   selector: 'app-consultation-form',
