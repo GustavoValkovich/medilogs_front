@@ -1,6 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
-import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
+import { AbstractControl, ValidationErrors, FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 import { Router, RouterModule } from '@angular/router';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { MatCardModule } from '@angular/material/card';
@@ -13,6 +13,13 @@ import { MatSelectModule } from '@angular/material/select';
 
 import { AuthService } from '../../core/services/auth.service';
 
+function passwordsMatchValidator(group: AbstractControl): ValidationErrors | null {
+  const password = group.get('password')?.value;
+  const confirm = group.get('confirm_password')?.value;
+
+  if (!password || !confirm) return null;
+  return password === confirm ? null : { passwordsMismatch: true };
+}
 
 @Component({
   selector: 'app-signup',
@@ -49,7 +56,8 @@ export class SignupComponent {
     'Otorrinolaringología',
     ];
 
-  form = this.fb.group({
+  form = this.fb.group(
+  {
     first_name: ['', [Validators.required]],
     last_name: ['', [Validators.required]],
     email: ['', [Validators.required, Validators.email]],
@@ -57,7 +65,11 @@ export class SignupComponent {
     phone: ['', [Validators.required]],
     license_number: ['', [Validators.required]],
     password: ['', [Validators.required, Validators.minLength(6)]],
-  });
+    confirm_password: ['', [Validators.required]],
+  },
+  { validators: passwordsMatchValidator }
+);
+
 
   constructor(
     private fb: FormBuilder,
