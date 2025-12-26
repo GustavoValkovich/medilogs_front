@@ -9,6 +9,7 @@ import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { MatSelectModule } from '@angular/material/select';
 
 import { AuthService } from '../../core/services/auth.service';
 
@@ -23,6 +24,7 @@ import { AuthService } from '../../core/services/auth.service';
     MatCardModule,
     MatFormFieldModule,
     MatInputModule,
+    MatSelectModule,
     MatButtonModule,
     MatIconModule,
     MatProgressSpinnerModule,
@@ -30,10 +32,22 @@ import { AuthService } from '../../core/services/auth.service';
   templateUrl: './signup.component.html',
   styleUrls: ['./signup.component.scss'],
 })
+
 export class SignupComponent {
   loading = false;
   hidePassword = true;
   error?: string | null;
+
+  
+  specialties: string[] = [
+   'Clínica médica',
+    'Pediatría',
+    'Cardiología',
+    'Ginecología',
+    'Traumatología',
+    'Dermatología',
+    'Otorrinolaringología',
+    ];
 
   form = this.fb.group({
     first_name: ['', [Validators.required]],
