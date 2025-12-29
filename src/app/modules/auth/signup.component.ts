@@ -100,9 +100,20 @@ export class SignupComponent {
         this.router.navigate(['/auth/login']);
       },
       error: (e) => {
-        this.loading = false;
-        this.error = e?.error?.message || 'Error al crear la cuenta';
-      },
+  this.loading = false;
+
+  if (e?.status === 409) {
+    this.error = 'El email ya está registrado';
+    return;
+  }
+
+  if (e?.status === 400) {
+    this.error = 'Datos inválidos';
+    return;
+  }
+
+  this.error = 'Error del servidor';
+},
     });
   }
 }
